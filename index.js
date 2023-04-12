@@ -8,7 +8,7 @@ const port = 8000;
 app.use('/', require('./routes'))
 
 // telling the app to use ejs as the view engine
-app.set('view engine','ejd');
+app.set('view engine','ejs');
 // directly accesing the ./views folder
 app.set('views','./views');
 
