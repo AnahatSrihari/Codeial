@@ -1,5 +1,11 @@
 const express = require('express');
 const app = express();
+// require cookie-parser.
+const cookieParser = require('cookie-parser')
+
+app.use(express.urlencoded())
+// telling app to to use cookie-parser - midleware
+app.use(cookieParser());
 
 const port = 8000;
 // requiring the database module
