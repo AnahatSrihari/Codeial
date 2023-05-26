@@ -63,3 +63,14 @@ module.exports.createSession = function(req, res){
     return res.redirect('/');
     //when session is created and auth done the user is redirected to home page
 }
+
+module.exports.destroySession = function(req, res){
+    req.logout(function(err){
+        if(err){
+            return err;
+        }
+        return res.redirect('/');
+    });
+
+   
+}
