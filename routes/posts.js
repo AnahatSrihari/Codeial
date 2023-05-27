@@ -1,9 +1,11 @@
+
 const express = require('express');
 const router = express.Router();
 
-const  usersConroller = require('../controllers/posts_controller');
 
-//map a route to the users_ controller
-router.get('/', usersConroller.posts);
+const postsController = require('../controllers/posts_controller');
+
+router.post('/create', postsController.create);
+
 
 module.exports = router;
