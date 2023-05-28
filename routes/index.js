@@ -14,5 +14,8 @@ router.use('/users', require('./users'));
 //router.use('/routerName', require('./routerName'));
 router.use('/posts', require('./posts'));
 
+//Call the comment - route from { index.js } file to make it usable
+router.use('/comments', require('./comments'));
+
 
 module.exports = router
