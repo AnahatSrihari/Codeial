@@ -18,9 +18,10 @@ module.exports.create = function(req, res){
     });
 }
 
+
 module.exports.destroy = function(req, res){
     Post.findById(req.params.id, function(err, post){
-        //finding and checking the user is the same who posted the comment
+         //finding and checking the user is the same who posted the comment
         // .id means converting the object id into string
         if (post.user == req.user.id){
             post.remove();

@@ -22,3 +22,22 @@ module.exports.create = function(req, res){
 
     });
 }
+
+module.exports.destroy = function(req, res){
+    //finding the comment to delete
+    Comment.findById(req.params.id, function(err, comment){
+        //checking the user 
+        if (comment.user == req.user.id){
+            // storing the comment-post refference to delete it from the post-comments array as well 
+            let postId = comment.post;
+            //removing the comment in the
+            comment.remove();
+            // finding by id and updating by removing/pulling the 
+            Post.findByIdAndUpdate(postId, { $pull: {comments: req.params.id}}, function(err, post){
+                return res.redirect('back');
+            })
+        }else{
+            return res.redirect('back');
+        }
+    });
+}
