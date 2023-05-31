@@ -2,13 +2,26 @@
 const User = require('../models/user')
 
 //this is a action for profile
-module.exports.profile = function(req ,res){
-   // return res.end('<h1> User profile Controller 2 </h1>');
+module.exports.profile = function(req, res){
+    User.findById(req.params.id, function(err, user){
+        return res.render('users_profile', {
+            title: 'User Profile',
+            profile_user: user
+        });
+    });
 
-    res.render('users_profile',{
-        title:"users"
-    })
 }
+
+module.exports.update = function(req, res){
+    if(req.user.id == req.params.id){
+        User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+            return res.redirect('back');
+        });
+    }else{
+        return res.status(401).send('Unauthorized');
+    }
+}
+
 
 
 //action to render the user sign up page

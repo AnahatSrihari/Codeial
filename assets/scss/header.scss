@@ -3,7 +3,7 @@
         display: flex;
         justify-content: space-between;
         padding: 0 10px;
-        background: #2196f3;
+        background: #003554;
         color: white;
         box-shadow: 1px 1px 1px 1px lightgrey;
 
@@ -12,6 +12,7 @@
                 margin: 5px;
                 font-size: 1.4rem;
                 font-weight: bold;
+                color: #fcbf49;
             }
         }
 
@@ -27,8 +28,9 @@
         }
 
         a{
-            color: white;
+            color:#ffea00;
             text-decoration: none;
+            font-weight: bold;
         }
 
     }
