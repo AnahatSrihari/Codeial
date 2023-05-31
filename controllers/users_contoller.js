@@ -73,17 +73,19 @@ module.exports.create = function(req, res){
 
 // sign in and create a session for the user
 module.exports.createSession = function(req, res){
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/');
     //when session is created and auth done the user is redirected to home page
 }
 
 module.exports.destroySession = function(req, res){
-    req.logout(function(err){
+    req.logout( function(req,res){
         if(err){
-            return err;
+            console.log(err);
         }
-        return res.redirect('/');
     });
+    req.flash('success', 'You have logged out!');
 
-   
+
+    return res.redirect('/');
 }

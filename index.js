@@ -16,6 +16,11 @@ const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo')(session);
 
 const sassMiddleware =require('node-sass-middleware');
+// requiring Connect Flash library - used for notification
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
+
+
 app.use(sassMiddleware({
     src: './assets/scss',
     dest: './assets/css',
@@ -71,6 +76,9 @@ app.use(passport.session());
 
 // middleware - check user and set in locals-views
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(customMware.setFlash);
 
 // use express router
 // this router will used for any route functions
