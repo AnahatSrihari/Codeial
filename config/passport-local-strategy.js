@@ -4,26 +4,31 @@ const LocalStrategy = require('passport-local').Strategy;
 // getting User form the models folder
 const User = require('../models/user')
 
-//Authentication using passport
+// authentication using passport
 passport.use(new LocalStrategy({
-    usernameField: 'email'
+    usernameField: 'email',
+    passReqToCallback: true
 },
-    function (email, password, done) {
-        // find a user and establish the identity
-        User.findOne({ email: email }, function (err, user) {
-            if (err) {
-                console.log("Error in finding the user --> Passport");
-                return done(err);
-            }
+function(req, email, password, done){
+    // find a user and establish the identity
+    User.findOne({email: email}, function(err, user)  {
+        if (err){
+            req.flash('error', err);
+            return done(err);
+        }
 
-            if (!user || user.password != password) {
-                console.log('Invalid  User/Password');
-                return done(null, false);
-            }
+        if (!user || user.password != password){
+            req.flash('error', 'Invalid Username/Password');
+            return done(null, false);
+        }
 
-            return done(null, user);
-        });
-    }));
+        return done(null, user);
+    });
+}
+
+
+));
+
 
 // serializing the user to decide which key is to be kept in the cookies
 passport.serializeUser(function(user, done){
@@ -51,7 +56,7 @@ passport.checkAuthentication = function(req, res,next){
         return next();
     }
     // if the user is not signed-in
-    return res.redirect('/user/sign-in');
+    return res.redirect('/users/sign-in');
 }
 
 passport.setAuthenticatedUser = function(req,res,next){

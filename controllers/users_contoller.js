@@ -1,7 +1,6 @@
-//importing the "user" model from model folder
-const User = require('../models/user')
+const User = require('../models/user');
 
-//this is a action for profile
+// let's keep it same as before
 module.exports.profile = function(req, res){
     User.findById(req.params.id, function(err, user){
         return res.render('users_profile', {
@@ -11,6 +10,7 @@ module.exports.profile = function(req, res){
     });
 
 }
+
 
 module.exports.update = function(req, res){
     if(req.user.id == req.params.id){
@@ -23,30 +23,29 @@ module.exports.update = function(req, res){
 }
 
 
-
-//action to render the user sign up page
-module.exports.signUp = function(req,res){
+// render the sign up page
+module.exports.signUp = function(req, res){
     if (req.isAuthenticated()){
         return res.redirect('/users/profile');
     }
 
-    return res.render('user_sign_up',{
-        title:" Codeial | Sign-UP"
-    });
+
+    return res.render('user_sign_up', {
+        title: "Codeial | Sign Up"
+    })
 }
 
 
-//action to render the user sign in page
-module.exports.signIn = function(req,res){
+// render the sign in page
+module.exports.signIn = function(req, res){
+
     if (req.isAuthenticated()){
         return res.redirect('/users/profile');
     }
-
-    return res.render('user_sign_in',{
-        title:" Codeial | Sign-IN"
-    });
+    return res.render('user_sign_in', {
+        title: "Codeial | Sign In"
+    })
 }
-    
 
 // get the sign up data
 module.exports.create = function(req, res){
@@ -75,11 +74,10 @@ module.exports.create = function(req, res){
 module.exports.createSession = function(req, res){
     req.flash('success', 'Logged in Successfully');
     return res.redirect('/');
-    //when session is created and auth done the user is redirected to home page
 }
 
 module.exports.destroySession = function(req, res){
-    req.logout( function(req,res){
+    req.logout(function(req,res){
         if(err){
             console.log(err);
         }

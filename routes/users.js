@@ -7,7 +7,7 @@ const usersConroller = require('../controllers/users_contoller');
 
 //map a route to the users_ controller
 // if the Authentication is checked then only the profile page will be accessed
-router.get('/profile/:id',passport.checkAuthentication, usersConroller.profile);
+router.get('/profile/:id', passport.checkAuthentication, usersConroller.profile);
 // route to update the user details using the
 router.post('/update/:id', passport.checkAuthentication, usersConroller.update);
 
@@ -25,7 +25,7 @@ router.post('/create', usersConroller.create);
 // use passport as a middleware to authenticate
 router.post('/create-session', passport.authenticate(
     'local',
-    { failureRedirect: '/user/sign-in'},
+    { failureRedirect: '/users/sign-in'},
 ),usersConroller.createSession)
 
 router.get('/sign-out', usersConroller.destroySession);
