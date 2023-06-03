@@ -65,7 +65,6 @@ module.exports.update = async function(req, res){
 }
 
 
-
 // render the sign up page
 module.exports.signUp = function(req, res){
     if (req.isAuthenticated()){
