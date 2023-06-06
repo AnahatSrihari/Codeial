@@ -17,6 +17,8 @@ router.use('/posts', require('./posts'));
 //Call the comment - route from { index.js } file to make it usable
 router.use('/comments', require('./comments'));
 
+router.use('/likes', require('./likes'));
+
 router.use('/api', require('./api'));
 
 
