@@ -18,7 +18,16 @@ const postSchema = new mongoose.Schema({
             type:  mongoose.Schema.Types.ObjectId,
             ref: 'Comment'
         }
+    ],
+          // include the array of ids of all likes in this post schema itself
+
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Like'
+        }
     ]
+
 
 },{
     // it creates 2 fields created-at AND  updated-at
